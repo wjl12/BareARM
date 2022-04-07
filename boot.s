@@ -64,3 +64,45 @@ vector_table_base_address:
 
 	MOV	R0, #0		// Use MSR in Monitor Mode.
 	MSR	SP_hyp, R0	// Initialize Hyp mode R13.
+
+	// Enable access to FP registers.
+	MOV	R1, #(0xF << 20)
+	MCR	P15, 0, R1, C1, C0, 2 // CPACR full access to cp11 and cp10. MOV R1, #(0x1 << 30)
+	// Enable Floating point and Neon unit.
+	VMSR	FPEXC, R1	// Set FPEXC.EN.
+	ISB			// Ensure the enable operation takes effect.
+
+	MOV	R1, #0
+	MOV	R2, #0
+	VMOV.F64 D0, R1, R2
+	VMOV.F64 D1, D0
+	VMOV.F64 D2, D0
+	VMOV.F64 D3, D0
+	VMOV.F64 D4, D0
+	VMOV.F64 D5, D0
+	VMOV.F64 D6, D0
+	VMOV.F64 D7, D0
+	VMOV.F64 D8, D0
+	VMOV.F64 D9, D0
+	VMOV.F64 D10, D0
+	VMOV.F64 D11, D0
+	VMOV.F64 D12, D0
+	VMOV.F64 D13, D0
+	VMOV.F64 D14, D0
+	VMOV.F64 D15, D0
+	VMOV.F64 D16, D0
+	VMOV.F64 D17, D0
+	VMOV.F64 D18, D0
+	VMOV.F64 D19, D0
+	VMOV.F64 D20, D0
+	VMOV.F64 D21, D0
+	VMOV.F64 D22, D0
+	VMOV.F64 D23, D0
+	VMOV.F64 D24, D0
+	VMOV.F64 D25, D0
+	VMOV.F64 D26, D0
+	VMOV.F64 D27, D0
+	VMOV.F64 D28, D0
+	VMOV.F64 D29, D0
+	VMOV.F64 D30, D0
+	VMOV.F64 D31, D0
